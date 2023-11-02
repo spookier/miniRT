@@ -5,9 +5,6 @@
 	  "libft": true,
 	  "mlx_linux": true,
 	  "README.md":true,
-	  ".gitignore":true
 	},
-	"files.associations": {
-		"minirt.h": "c"
-	},
+
   }
