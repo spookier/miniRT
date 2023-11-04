@@ -45,54 +45,21 @@ void intersect_ray_sphere(t_ray r, t_sphere sphere, float *t1, float *t2)
     *t2 = (-var[1] - sqrt(discriminant)) / (2 * var[0]);
 }
 
-t_rgb compute_lighting(t_vec3 P, t_vec3 N, t_sphere *sphere, t_light light) 
+t_rgb trace_ray(t_ray r, float t_min, float t_max, t_scene scene) 
 {
-    t_vec3 L;
-    float diffuse_intensity;
-    t_rgb color;
-    
-    
-    // P is the intersection point, N is the normal at that point.
-    L = vec3_subtract(light.position, P); // Vector from point P to the light
-    vec3_normalize(&L);
-    
-    // Calculate the diffuse intensity
-    diffuse_intensity = light.intensity * fmax(0.0, vec3_dot(N, L));
-    
-    //Adjust color by diffuse intensity (assuming the sphere's color is red for now)
-    // rgb[0] = fmin(255, 255 * diffuse_intensity);
-    // rgb[1] = 0;
-    // rgb[2] = 0;
-
-    // color = create_rgb
-    // (
-    //     fmin(255, scene.sphere_color.r * diffuse_intensity),
-    //     fmin(255, scene.sphere_color.g * diffuse_intensity),
-    //     fmin(255, scene.sphere_color.b * diffuse_intensity)
-    // );
-
-     color = create_rgb
-    (
-        fmin(255, sphere->color.r * diffuse_intensity),
-        fmin(255, sphere->color.g * diffuse_intensity),
-        fmin(255, sphere->color.b * diffuse_intensity)
-    );
-
-    return (color);
-}
-
-t_rgb trace_ray(t_ray r, float t_min, float t_max, t_scene scene, t_light light) 
-{
-    float       closest_t;
     t_sphere    *closest_sphere;
+    t_rgb       diffuse_reflection_color;
+    t_vec3      point_intersec;
+    t_vec3      normal_surface_intersec;
+    float       closest_t;
     float       t[2];
     int         i;
-    t_rgb       diffuse_reflection_color;
+
 
     closest_t = INFINITY;
     closest_sphere = NULL;
     i = 0;
-    while (i < 4)
+    while (i < scene.num_spheres)
     {
         intersect_ray_sphere(r, scene.spheres[i], &t[0], &t[1]);
         if (t[0] >= t_min && t[0] <= t_max && t[0] < closest_t)
@@ -108,21 +75,18 @@ t_rgb trace_ray(t_ray r, float t_min, float t_max, t_scene scene, t_light light)
         i++;
     }
 
-    if (closest_sphere == NULL) 
+    if (closest_sphere == NULL)
         return ((t_rgb){0, 0, 0}); // Background color (black for now)
 
     // Calculate the point of intersection
-    t_vec3 P = vec3_add(r.origin, vec3_mult_scalar(r.direction, closest_t));
+    point_intersec = vec3_add(r.origin, vec3_mult_scalar(r.direction, closest_t));
 
     // Calculate the normal to the surface at the intersection point
-    t_vec3 N = vec3_subtract(P, closest_sphere->center);
-    vec3_normalize(&N);
+    normal_surface_intersec = vec3_subtract(point_intersec, closest_sphere->center);
+    vec3_normalize(&normal_surface_intersec);
 
     // Compute the color at the intersection point with lighting
-    diffuse_reflection_color = compute_lighting(P, N, closest_sphere, light);
-    
-    return(diffuse_reflection_color);
+    diffuse_reflection_color = compute_lighting(point_intersec, normal_surface_intersec, closest_sphere, scene.lights[0]);
 
-
-    //return (closest_sphere->color);
+    return (diffuse_reflection_color);
 }

@@ -63,7 +63,6 @@ typedef struct s_sphere
 {
     double radius;
 	t_vec3 center;
-    //int color[3]; // RGB
 	t_rgb color;
 } t_sphere;
 
@@ -78,10 +77,12 @@ typedef struct s_light
 // Define the scene (assuming maximum 3 spheres for simplicity)
 typedef struct s_scene
 {
+	int			num_spheres;
     t_sphere 	spheres[4];
     float 		viewport_size[2];
     float 		projection_plane_d;
-	t_light     lights;
+	t_light     lights[2];
+
 } t_scene;
 
 

@@ -21,8 +21,16 @@ static void init_camera_vars(t_camera *camera)
     camera->direction = vec3(0.0, 0.0, 1.0);
 }
 
+static void init_lights(t_light *lights)
+{
+    lights[0] = light_create((t_vec3){0, 0, 0}, 0xFFFFFF, 0.2);
+}
+
 void init_scene(t_scene *scene) 
 {
+
+    scene->num_spheres = 4;
+
     scene->viewport_size[0] = 1.0;
     scene->viewport_size[1] = 1.0;
     scene->projection_plane_d = 1.0;
@@ -50,5 +58,6 @@ int init_vars(t_all *all)
     init_vars_viewport(&all->viewp);
     init_camera_vars(&all->cam);
     init_scene(&all->scene);
+    init_lights(all->scene.lights);
 	return(0);
 }
