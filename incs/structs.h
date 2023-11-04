@@ -59,12 +59,31 @@ typedef struct s_sphere
     int color[3]; // RGB
 } t_sphere;
 
-// Define the scene (assuming maximum 10 spheres for simplicity)
-typedef struct s_scene {
-    t_sphere spheres[3];
-    float viewport_size[2];
-    float projection_plane_d;
+
+typedef enum s_light_type
+{
+    AMBIENT,
+    POINT,
+    DIRECTIONAL
+}   t_light_type;
+
+typedef struct s_light
+{
+	t_light_type 	type;
+	t_vec3 			position;
+    int 			color;
+    float 			intensity;
+}	t_light;
+
+// Define the scene (assuming maximum 3 spheres for simplicity)
+typedef struct s_scene
+{
+    t_sphere 	spheres[4];
+    float 		viewport_size[2];
+    float 		projection_plane_d;
+	t_light     lights;
 } t_scene;
+
 
 typedef struct s_all 
 {

@@ -27,6 +27,7 @@ FILES =		$(SRCS_DIR)main.c \
 			$(SRCS_DIR)vec3.c \
 			$(SRCS_DIR)viewport.c \
 			$(SRCS_DIR)ray.c \
+			$(SRCS_DIR)light.c \
 
 OBJ_FILES = $(FILES:.c=.o)
 

@@ -42,7 +42,13 @@ int			key_hook(int keycode, t_all *all);
 // RAY
 t_ray		init_ray(t_vec3 origin, t_vec3 direction);
 void 		intersect_ray_sphere(t_ray r, t_sphere sphere, float *t1, float *t2);
-int			trace_ray(t_ray r, float t_min, float t_max, t_scene scene);
+int 		trace_ray(t_ray r, float t_min, float t_max, t_scene scene, t_light light);
+
+
+// LIGHT
+t_light light_create(t_light_type type, t_vec3 position, int color, float intensity);
+
+
 
 // FREE MEMORY
 void 		free_mem(t_all *all);

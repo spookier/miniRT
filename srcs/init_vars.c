@@ -36,14 +36,21 @@ void init_scene(t_scene *scene)
     scene->spheres[1].center = vec3(2.0, 0.0, 4.0);
     scene->spheres[1].radius = 1.0;
     scene->spheres[1].color[0] = 0;
-    scene->spheres[1].color[1] = 0;
-    scene->spheres[1].color[2] = 255;
+    scene->spheres[1].color[1] = 255;
+    scene->spheres[1].color[2] = 0;
 
     scene->spheres[2].center = vec3(-2.0, 0.0, 4.0);
     scene->spheres[2].radius = 1.0;
     scene->spheres[2].color[0] = 0;
-    scene->spheres[2].color[1] = 255;
-    scene->spheres[2].color[2] = 0;
+    scene->spheres[2].color[1] = 0;
+    scene->spheres[2].color[2] = 255;
+
+    scene->spheres[3].center = vec3(0, -500, 0);
+    scene->spheres[3].radius = 499.0;
+    scene->spheres[3].color[0] = 255;
+    scene->spheres[3].color[1] = 255;
+    scene->spheres[3].color[2] = 0;
+
 }
 
 int init_vars(t_all *all)
