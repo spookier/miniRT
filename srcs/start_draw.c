@@ -29,14 +29,12 @@ void render_scene(t_scene scene, t_all *all)
     t_vec3  cam;
     t_vec3  D;
     t_ray   r;
-    int     color;
+    t_rgb   color;
     int     x;
     int     y;
 
     cam = vec3(0, 0, 0);
-    light_1 = light_create(AMBIENT, (t_vec3){0, 0, 0}, 0xFFFFFF, 0.2);
-
-    //TO DO: AMBIENT LIGHT AND DIFFUSE LIGHTNING ?
+    light_1 = light_create((t_vec3){0, 0, 0}, 0xFFFFFF, 0.2);
     //light_2 = light_create(POINT, (t_vec3){2, 1, 0}, 0xFFFFFF, 0.6);
     //light_3 = light_create(DIRECTIONAL, (t_vec3){1, 4, 4}, 0xFFFFFF, 0.2);
 
@@ -50,7 +48,7 @@ void render_scene(t_scene scene, t_all *all)
             D = canvas_to_viewport(x, y, &all->viewp);
             r = init_ray(cam, D);
             color = trace_ray(r, 1.0, INFINITY, scene, light_1);
-            put_pixel_coord(all, x, y, color);
+            put_pixel_coord(all, x, y, convert_rgb_to_int(color));
             y++;
         }
         x++;

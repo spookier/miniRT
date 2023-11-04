@@ -10,6 +10,13 @@ typedef int bool;
 # define TRUE 	1 // while (1) - will never leave loop
 # define FALSE 	0
 
+typedef struct s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_rgb;
+
 
 typedef struct	s_data 	// USED TO DRAW PIXEL
 {
@@ -56,20 +63,13 @@ typedef struct s_sphere
 {
     double radius;
 	t_vec3 center;
-    int color[3]; // RGB
+    //int color[3]; // RGB
+	t_rgb color;
 } t_sphere;
 
 
-typedef enum s_light_type
-{
-    AMBIENT,
-    POINT,
-    DIRECTIONAL
-}   t_light_type;
-
 typedef struct s_light
 {
-	t_light_type 	type;
 	t_vec3 			position;
     int 			color;
     float 			intensity;
