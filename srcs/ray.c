@@ -86,7 +86,7 @@ t_rgb trace_ray(t_ray r, float t_min, float t_max, t_scene scene)
     vec3_normalize(&normal_surface_intersec);
 
     // Compute the color at the intersection point with lighting
-    diffuse_reflection_color = compute_lighting(point_intersec, normal_surface_intersec, closest_sphere, scene.lights[0]);
+    diffuse_reflection_color = compute_lighting(point_intersec, normal_surface_intersec, closest_sphere, scene);
 
     return (diffuse_reflection_color);
 }

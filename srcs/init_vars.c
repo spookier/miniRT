@@ -3,8 +3,8 @@
 static void init_vars_viewport(t_viewport *viewp)
 {
     //viewp->aspect_ratio = 16.0 / 9.0;
-    viewp->img_width = 600;
-    viewp->img_height = 600;
+    viewp->img_width = 900;
+    viewp->img_height = 900;
     //viewp->img_height = (int)(viewp->img_width / viewp->aspect_ratio);
     if (viewp->img_height < 1)
         viewp->img_height = 1;
@@ -23,13 +23,15 @@ static void init_camera_vars(t_camera *camera)
 
 static void init_lights(t_light *lights)
 {
-    lights[0] = light_create((t_vec3){0, 0, 0}, 0xFFFFFF, 0.2);
+    lights[0] = light_create(AMBIENT, (t_vec3){0, 0, 0}, 0xFFFFFF, 0.2);
+    lights[1] = light_create(DIFFUSE, (t_vec3){0, 10, 0}, 0xFFFFFF, 0.6);
 }
 
 void init_scene(t_scene *scene) 
 {
 
     scene->num_spheres = 4;
+    scene->num_lights = 2;
 
     scene->viewport_size[0] = 1.0;
     scene->viewport_size[1] = 1.0;

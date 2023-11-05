@@ -5,7 +5,6 @@
 
 # define M_PI 3.14159265358979323846
 
-
 typedef int bool;
 # define TRUE 	1 // while (1) - will never leave loop
 # define FALSE 	0
@@ -67,8 +66,16 @@ typedef struct s_sphere
 } t_sphere;
 
 
+typedef enum e_light_type
+{
+	AMBIENT,
+	DIFFUSE
+
+} t_light_type;
+
 typedef struct s_light
 {
+	t_light_type     type;
 	t_vec3 			position;
     int 			color;
     float 			intensity;
@@ -78,6 +85,7 @@ typedef struct s_light
 typedef struct s_scene
 {
 	int			num_spheres;
+	int			num_lights;
     t_sphere 	spheres[4];
     float 		viewport_size[2];
     float 		projection_plane_d;
