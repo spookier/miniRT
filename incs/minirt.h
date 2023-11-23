@@ -8,9 +8,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../libft/incs/get_next_line.h"
-#include "../libft/incs/libft.h"
-#include "../libft/incs/ft_printf.h"
 #include "../mlx_linux/mlx.h"
 #include "vectors.h"
 #include "keycodes.h"

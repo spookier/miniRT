@@ -5,9 +5,6 @@ CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=address
 
 SRCS_DIR = ./srcs/
 
-LIBFT_DIR = ./libft
-LIBFT_NAME = libft.a
-LIBFT = $(addprefix $(LIBFT_DIR)/, $(LIBFT_NAME))
 
 INCS_DIR = ./incs
 
@@ -36,14 +33,10 @@ OBJ_FILES = $(FILES:.c=.o)
 	$(CC) $(CFLAGS) -c -o $@ $< -I $(INCS_DIR)
 
 
-all : $(LIBFT_NAME) $(NAME) print_success
+all : $(NAME) print_success
 
 
-$(LIBFT_NAME):
-	make -C $(LIBFT_DIR)
-
-
-$(NAME) : $(MLX) $(OBJ_FILES) $(LIBFT)
+$(NAME) : $(MLX) $(OBJ_FILES)
 	$(CC) $(CFLAGS) $^ -o $@ -I$(INCS_DIR) -L$(MLX_DIR) -lmlx $(MLX_FLAGS)
 
 
@@ -62,13 +55,11 @@ print_cleaned:
 
 
 clean : 
-	make clean -C $(LIBFT_DIR) 
 	rm -rf $(OBJ_FILES)
 	make clean -C $(MLX_DIR)
 
 
 fclean : clean
-	make fclean -C $(LIBFT_DIR) 
 	rm -rf $(NAME)
 	@make print_cleaned
 
@@ -76,7 +67,5 @@ fclean : clean
 re : fclean
 	make all
 
-ex: all
-	valgrind ./minirt
 
 .PHONY : all clean fclean re
