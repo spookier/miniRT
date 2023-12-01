@@ -46,7 +46,8 @@ t_rgb 		trace_ray(t_ray r, float t_min, float t_max, t_scene scene);
 
 
 // LIGHT
-t_light light_create(t_light_type light_type ,t_vec3 position, int color, float intensity);
+t_light 	light_create(t_vec3 position, int color, float intensity);
+t_ambient 	ambient_create(int color, float intensity);
 t_rgb 		compute_lighting(t_vec3 P, t_vec3 N, t_sphere *sphere, t_scene scene);
 
 

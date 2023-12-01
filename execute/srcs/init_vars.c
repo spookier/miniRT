@@ -2,10 +2,9 @@
 
 static void init_vars_viewport(t_viewport *viewp)
 {
-    //viewp->aspect_ratio = 16.0 / 9.0;
     viewp->img_width = 900;
     viewp->img_height = 900;
-    //viewp->img_height = (int)(viewp->img_width / viewp->aspect_ratio);
+
     if (viewp->img_height < 1)
         viewp->img_height = 1;
 
@@ -21,10 +20,10 @@ static void init_camera_vars(t_camera *camera)
     camera->direction = vec3(0.0, 0.0, 1.0);
 }
 
-static void init_lights(t_light *lights)
+static void init_lights(t_light *light, t_ambient *ambient)
 {
-    lights[0] = light_create(AMBIENT, (t_vec3){0, 0, 0}, 0xFFFFFF, 0.2);
-    lights[1] = light_create(DIFFUSE, (t_vec3){0, 10, 0}, 0xFFFFFF, 0.6);
+    *light = light_create((t_vec3){0, 10, 0}, 0xFFFFFF, 0.35);
+    *ambient = ambient_create(0xFFFFFF, 0.0);
 }
 
 void init_scene(t_scene *scene) 
@@ -60,6 +59,6 @@ int init_vars(t_all *all)
     init_vars_viewport(&all->viewp);
     init_camera_vars(&all->cam);
     init_scene(&all->scene);
-    init_lights(all->scene.lights);
+    init_lights(&all->scene.light, &all->scene.ambient);
 	return(0);
 }

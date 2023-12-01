@@ -14,6 +14,7 @@ typedef struct s_rgb
 	int	r;
 	int	g;
 	int	b;
+	
 }	t_rgb;
 
 
@@ -60,36 +61,53 @@ typedef struct s_ray
 
 typedef struct s_sphere 
 {
-    double radius;
+	double radius;
 	t_vec3 center;
 	t_rgb color;
 } t_sphere;
 
+// typedef enum e_light_type
+// {
+// 	AMBIENT,
+// 	DIFFUSE
 
-typedef enum e_light_type
-{
-	AMBIENT,
-	DIFFUSE
+// } t_light_type;
 
-} t_light_type;
+// typedef struct s_light
+// {
+// 	t_light_type    type;
+// 	t_vec3 			position;
+//     int 			color;
+//     float 			intensity;
+// }	t_light;
 
 typedef struct s_light
 {
-	t_light_type     type;
-	t_vec3 			position;
-    int 			color;
-    float 			intensity;
-}	t_light;
+	t_vec3 		position;
+    int 		color;
+    float 		intensity;
+
+} t_light;
+
+typedef struct s_ambient
+{
+	int		color;
+	float 	intensity;
+
+}	t_ambient;
 
 // Define the scene (assuming maximum 3 spheres for simplicity)
 typedef struct s_scene
 {
-	int			num_spheres;
-	int			num_lights;
-    t_sphere 	spheres[4];
-    float 		viewport_size[2];
-    float 		projection_plane_d;
-	t_light     lights[2];
+	int				num_spheres;
+	int				num_lights;
+	t_sphere 		spheres[4];
+	float 			viewport_size[2];
+	float 			projection_plane_d;
+	t_ambient		ambient;
+	t_light			light;
+
+	//t_light		lights[2];
 
 } t_scene;
 
