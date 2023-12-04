@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_vars.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acostin <acostin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/04 12:15:39 by acostin           #+#    #+#             */
+/*   Updated: 2023/12/04 16:17:42 by acostin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../incs/minirt.h"
 
 static void init_vars_viewport(t_viewport *viewp)
@@ -26,7 +38,7 @@ static void init_lights(t_light *light, t_ambient *ambient)
     *ambient = ambient_create(0xFFFFFF, 0.0);
 }
 
-void init_scene(t_scene *scene) 
+void    init_scene(t_scene *scene) 
 {
 
     scene->num_spheres = 4;

@@ -66,20 +66,6 @@ typedef struct s_sphere
 	t_rgb color;
 } t_sphere;
 
-// typedef enum e_light_type
-// {
-// 	AMBIENT,
-// 	DIFFUSE
-
-// } t_light_type;
-
-// typedef struct s_light
-// {
-// 	t_light_type    type;
-// 	t_vec3 			position;
-//     int 			color;
-//     float 			intensity;
-// }	t_light;
 
 typedef struct s_light
 {

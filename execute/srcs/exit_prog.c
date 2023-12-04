@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit_prog.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acostin <acostin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/04 12:10:34 by acostin           #+#    #+#             */
+/*   Updated: 2023/12/04 12:11:21 by acostin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../incs/minirt.h"
 
-void exit_prog(t_all *all, char *str)
+void	exit_prog(t_all *all, char *str)
 {
-	if(!all)
+	if (!all)
 		exit(1);
-	if(str)
+	if (str)
 		printf("%s\n", str);
 	free_mem(all);
 	exit(0);
