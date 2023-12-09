@@ -21,7 +21,8 @@ FILES =		$(SRCS_DIR)main.c \
 			$(SRCS_DIR)exit_prog.c \
 			$(SRCS_DIR)init_prog.c \
 			$(SRCS_DIR)init_vars.c \
-			$(SRCS_DIR)vec3.c \
+			$(SRCS_DIR)vec3_1.c \
+			$(SRCS_DIR)vec3_2.c \
 			$(SRCS_DIR)viewport.c \
 			$(SRCS_DIR)ray.c \
 			$(SRCS_DIR)light.c \
