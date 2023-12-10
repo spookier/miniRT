@@ -1,6 +1,6 @@
 #include "../incs/minirt.h"
 
-static float vec3_length(t_vec3 v) 
+float vec3_length(t_vec3 v) 
 {
 	return sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
 }

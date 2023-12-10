@@ -77,8 +77,8 @@ typedef struct s_light
 
 typedef struct s_ambient
 {
-	int		color;
-	float 	intensity;
+	int			color;
+	float 		intensity;
 
 }	t_ambient;
 
