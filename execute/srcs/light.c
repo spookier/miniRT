@@ -6,7 +6,7 @@
 /*   By: acostin <acostin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 12:28:10 by acostin           #+#    #+#             */
-/*   Updated: 2023/12/10 02:36:10 by acostin          ###   ########.fr       */
+/*   Updated: 2023/12/15 23:24:04 by acostin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,25 @@ t_light	light_create(t_vec3 position, int color, float intensity)
 	return (light);
 }
 
-
 int is_in_shadow(t_vec3 P, t_vec3 light_direction, float light_distance, t_scene scene)
 {
+	int i;
     t_ray shadow_ray;
-    float t1, t2;
-
+    float t1;
+	float t2;
+	
     // Create a shadow ray
     shadow_ray.origin = P;
     shadow_ray.direction = light_direction;
 
-	//TODO: Make while loop
-    for (int i = 0; i < scene.num_spheres; i++)
+	i = 0;
+	while (i < scene.num_spheres)
 	{
-        intersect_ray_sphere(shadow_ray, scene.spheres[i], &t1, &t2);
+		intersect_ray_sphere(shadow_ray, scene.spheres[i], &t1, &t2);
 		if ((t1 < light_distance && t1 > 0.001) || (t2 < light_distance && t2 > 0.001))
 			return (1);
-    }
-
+		i++;
+	}
     return (0);
 }
 
