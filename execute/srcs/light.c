@@ -6,7 +6,7 @@
 /*   By: acostin <acostin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 12:28:10 by acostin           #+#    #+#             */
-/*   Updated: 2023/12/16 04:10:59 by acostin          ###   ########.fr       */
+/*   Updated: 2023/12/18 00:29:07 by acostin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,39 @@ int is_in_shadow(t_vec3 P, t_vec3 light_direction, float light_distance, t_scene
     t_ray shadow_ray;
     float t1;
 	float t2;
+	// t_vec3	cy_center[2];
 	
     // Create a shadow ray
     shadow_ray.origin = P;
     shadow_ray.direction = light_direction;
 
 	i = 0;
-	while (i < scene.num_spheres && scene.obj[i].type == SPHERE)
+	while (i < scene.num_spheres + scene.num_planes + scene.num_cylinder)
 	{
-		intersect_ray_sphere(shadow_ray, scene.obj[i], &t1, &t2);
-		if ((t1 < light_distance && t1 > 0.001) || (t2 < light_distance && t2 > 0.001))
+		if (scene.obj[i].type == SPHERE)
+			intersect_ray_sphere(shadow_ray, scene.obj[i], &t1, &t2);
+		else if (scene.obj[i].type == PLANE)
+			intersect_ray_plane(shadow_ray, scene.obj[i], &t1, &t2);
+		// else if (scene.obj[i].type == CYLINDER)
+		// 	intersect_ray_cylinder(shadow_ray, scene.obj[i], &t1, &t2);
+		
+		// if (scene.obj[i].type == CYLINDER)
+		// {
+		// 	get_cylinder_centers(scene.obj[i], cy_center);
+		// 	if (intersect_ray_cylinder_body(shadow_ray, scene.obj[i], &t1, cy_center) == INFINITY
+		// 		&& intersect_ray_cylinder_circle(shadow_ray, scene.obj[i], &t2, cy_center) == INFINITY)
+		// 		return (1);
+		// }
+		// else
+		if ((t1 < light_distance && t1 > 0.001)
+			|| (t2 < light_distance && t2 > 0.001))
 			return (1);
 		i++;
 	}
     return (0);
 }
 
-t_rgb	compute_lighting(t_vec3 P, t_vec3 N, t_obj *sphere, t_scene scene)
+t_rgb	compute_lighting(t_vec3 P, t_vec3 N, t_obj *obj, t_scene scene)
 {
 	t_vec3	light_direction;
 	float	diffuse_intensity;			// Initialize diffuse_intensity
@@ -65,9 +81,9 @@ t_rgb	compute_lighting(t_vec3 P, t_vec3 N, t_obj *sphere, t_scene scene)
 	diffuse_intensity = 0.0;
 	ambient_color = create_rgb(0, 0, 0);
 
-	ambient_color.r += (sphere->color.r) * scene.light.intensity;
-	ambient_color.g += (sphere->color.g) * scene.light.intensity;
-	ambient_color.b += (sphere->color.b) * scene.light.intensity;
+	ambient_color.r += (obj->color.r) * scene.light.intensity;
+	ambient_color.g += (obj->color.g) * scene.light.intensity;
+	ambient_color.b += (obj->color.b) * scene.light.intensity;
 
 	light_direction = vec3_subtract(scene.light.position, P);
 	vec3_normalize(&light_direction);
@@ -86,9 +102,9 @@ t_rgb	compute_lighting(t_vec3 P, t_vec3 N, t_obj *sphere, t_scene scene)
 
 	// Apply the diffuse lighting to the sphere's color and add the ambient component
 	color = create_rgb(
-		fmin(255, (sphere->color.r * diffuse_intensity) + ambient_color.r),
-		fmin(255, (sphere->color.g * diffuse_intensity) + ambient_color.g),
-		fmin(255, (sphere->color.b * diffuse_intensity) + ambient_color.b)
+		fmin(255, (obj->color.r * diffuse_intensity) + ambient_color.r),
+		fmin(255, (obj->color.g * diffuse_intensity) + ambient_color.g),
+		fmin(255, (obj->color.b * diffuse_intensity) + ambient_color.b)
 	);
 
 	return (color);

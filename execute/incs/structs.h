@@ -9,6 +9,9 @@
 # define PLANE			2
 # define CYLINDER		3
 
+# define TOP			0
+# define BOTTOM			1
+
 typedef int bool;
 # define TRUE 	1 // while (1) - will never leave loop
 # define FALSE 	0
@@ -94,9 +97,10 @@ typedef struct s_obj
 typedef struct s_scene
 {
 	int				num_spheres;
+	int				num_planes;
+	int				num_cylinder;
 	int				num_lights;
-	t_obj 			obj[4];
-	//t_obj			objects[4];
+	t_obj 			obj[20];
 	float 			viewport_size[2];
 	float 			projection_plane_d;
 	t_ambient		ambient;

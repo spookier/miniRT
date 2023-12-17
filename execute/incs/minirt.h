@@ -40,13 +40,18 @@ int			key_hook(int keycode, t_all *all);
 // RAY
 t_ray		init_ray(t_vec3 origin, t_vec3 direction);
 void 		intersect_ray_sphere(t_ray r, t_obj sphere, float *t1, float *t2);
+void		intersect_ray_plane(t_ray r, t_obj plane, float *t1, float *t2);
+void get_cylinder_centers(t_obj cylinder, t_vec3 *cy_center);
+float	intersect_ray_cylinder_body(t_ray r, t_obj cylinder, float *t_body, t_vec3 *cy_center);
+float	intersect_ray_cylinder_circle(t_ray r, t_obj cylinder, float *t_circle, t_vec3 *cy_center);
+void	intersect_ray_cylinder(t_ray r, t_obj cylinder, float *t1, float *t2);
 t_rgb 		trace_ray(t_ray r, t_scene scene);
 
 
 // LIGHT
 t_light 	light_create(t_vec3 position, int color, float intensity);
 t_ambient 	ambient_create(int color, float intensity);
-t_rgb 		compute_lighting(t_vec3 P, t_vec3 N, t_obj *sphere, t_scene scene);
+t_rgb 		compute_lighting(t_vec3 P, t_vec3 N, t_obj *obj, t_scene scene);
 
 
 // FREE MEMORY

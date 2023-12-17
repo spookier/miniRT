@@ -6,7 +6,7 @@
 /*   By: acostin <acostin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 12:15:39 by acostin           #+#    #+#             */
-/*   Updated: 2023/12/16 04:11:29 by acostin          ###   ########.fr       */
+/*   Updated: 2023/12/18 00:28:39 by acostin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,33 +41,88 @@ static void init_lights(t_light *light, t_ambient *ambient)
 void    init_scene(t_scene *scene) 
 {
 
-    scene->num_spheres = 4;
     scene->num_lights = 2;
+    scene->num_spheres = 3;
+    scene->num_planes = 4 * 2;
+    scene->num_cylinder = 1;
 
     scene->viewport_size[0] = 1.0;
     scene->viewport_size[1] = 1.0;
     scene->projection_plane_d = 1.0;
 
     scene->obj[0].type = SPHERE;
-    scene->obj[0].center = vec3(0.0, -1.0, 3.0);
-    scene->obj[0].radius = 1.0;
+    scene->obj[0].center = vec3(0.0, 0.0, 3.0);
+    scene->obj[0].radius = 0.5;
     scene->obj[0].color = create_rgb(255, 0, 0);
 
     scene->obj[1].type = SPHERE;
-    scene->obj[1].center = vec3(2.0, 0.0, 4.0);
-    scene->obj[1].radius = 1.0;
+    scene->obj[1].center = vec3(1.5, 0.0, 4.0);
+    scene->obj[1].radius = 0.5;
     scene->obj[1].color = create_rgb(0, 255, 0);
 
     scene->obj[2].type = SPHERE;
-    scene->obj[2].center = vec3(-2.0, 0.0, 4.0);
-    scene->obj[2].radius = 1.0;
+    scene->obj[2].center = vec3(-1.5, 0.0, 4.0);
+    scene->obj[2].radius = 0.5;
     scene->obj[2].color = create_rgb(0, 0, 255);
 
-    // BIG YELLOW GROUND
-    scene->obj[3].type = SPHERE;
-    scene->obj[3].center = vec3(0, -500, 0);
-    scene->obj[3].radius = 499.0;
-    scene->obj[3].color = create_rgb(255, 255, 0);
+    scene->obj[3].type = PLANE;
+    scene->obj[3].center = vec3(0, -1, 0);
+    scene->obj[3].xyz_vec = vec3(0, 1, 0);
+    scene->obj[3].color = create_rgb(255, 255, 255);
+
+    scene->obj[4].type = PLANE;
+    scene->obj[4].center = vec3(-1.5, 0, 0);
+    scene->obj[4].xyz_vec = vec3(1, 0, 0);
+    scene->obj[4].color = create_rgb(0, 255, 255);
+
+    scene->obj[5].type = PLANE;
+    scene->obj[5].center = vec3(-1.5, 0, 0);
+    scene->obj[5].xyz_vec = vec3(1, 0, 0);
+    scene->obj[5].color = create_rgb(255, 0, 255);
+
+    scene->obj[6].type = PLANE;
+    scene->obj[6].center = vec3(0, 0, 5);
+    scene->obj[6].xyz_vec = vec3(0, 0, 1);
+    scene->obj[6].color = create_rgb(255, 0, 255);
+
+///
+    scene->obj[7].type = PLANE;
+    scene->obj[7].center = vec3(0, -1, 0);
+    scene->obj[7].xyz_vec = vec3(0, 1, 0);
+    scene->obj[7].center = vec3_subtract(scene->obj[7].center, vec3_mult_scalar(scene->obj[7].xyz_vec, 0.001));
+    scene->obj[7].xyz_vec = vec3_mult_scalar(scene->obj[7].xyz_vec, -1);
+    scene->obj[7].color = create_rgb(255, 255, 255);
+
+    scene->obj[8].type = PLANE;
+    scene->obj[8].center = vec3(-1.5, 0, 0);
+    scene->obj[8].xyz_vec = vec3(1, 0, 0);
+    scene->obj[8].center = vec3_subtract(scene->obj[8].center, vec3_mult_scalar(scene->obj[8].xyz_vec, 0.001));
+    scene->obj[8].xyz_vec = vec3_mult_scalar(scene->obj[8].xyz_vec, -1);
+    scene->obj[8].color = create_rgb(0, 255, 255);
+
+    scene->obj[9].type = PLANE;
+    scene->obj[9].center = vec3(1.5, 0, 0);
+    scene->obj[9].xyz_vec = vec3(1, 0, 0);
+    scene->obj[9].center = vec3_subtract(scene->obj[9].center, vec3_mult_scalar(scene->obj[9].xyz_vec, 0.001));
+    scene->obj[9].xyz_vec = vec3_mult_scalar(scene->obj[9].xyz_vec, -1);
+    scene->obj[9].color = create_rgb(255, 0, 255);
+
+    scene->obj[10].type = PLANE;
+    scene->obj[10].center = vec3(0, 0, 5);
+    scene->obj[10].xyz_vec = vec3(0, 0, 1);
+    scene->obj[10].center = vec3_subtract(scene->obj[10].center, vec3_mult_scalar(scene->obj[10].xyz_vec, 0.001));
+    scene->obj[10].xyz_vec = vec3_mult_scalar(scene->obj[10].xyz_vec, -1);
+    scene->obj[10].color = create_rgb(255, 0, 255);
+///
+
+    scene->obj[11].type = CYLINDER;
+    scene->obj[11].center = vec3(0, 0, 3);
+    scene->obj[11].radius = 0.5;
+    scene->obj[11].height = 1.5;
+    scene->obj[11].xyz_vec = vec3(1, 0, 0);
+    scene->obj[11].color = create_rgb(255, 0, 0);
+
+
 }
 
 int init_vars(t_all *all)
