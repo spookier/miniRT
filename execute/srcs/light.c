@@ -6,7 +6,7 @@
 /*   By: acostin <acostin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 12:28:10 by acostin           #+#    #+#             */
-/*   Updated: 2023/12/15 23:24:04 by acostin          ###   ########.fr       */
+/*   Updated: 2023/12/16 04:10:59 by acostin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ int is_in_shadow(t_vec3 P, t_vec3 light_direction, float light_distance, t_scene
     shadow_ray.direction = light_direction;
 
 	i = 0;
-	while (i < scene.num_spheres)
+	while (i < scene.num_spheres && scene.obj[i].type == SPHERE)
 	{
-		intersect_ray_sphere(shadow_ray, scene.spheres[i], &t1, &t2);
+		intersect_ray_sphere(shadow_ray, scene.obj[i], &t1, &t2);
 		if ((t1 < light_distance && t1 > 0.001) || (t2 < light_distance && t2 > 0.001))
 			return (1);
 		i++;
@@ -55,7 +55,7 @@ int is_in_shadow(t_vec3 P, t_vec3 light_direction, float light_distance, t_scene
     return (0);
 }
 
-t_rgb	compute_lighting(t_vec3 P, t_vec3 N, t_sphere *sphere, t_scene scene)
+t_rgb	compute_lighting(t_vec3 P, t_vec3 N, t_obj *sphere, t_scene scene)
 {
 	t_vec3	light_direction;
 	float	diffuse_intensity;			// Initialize diffuse_intensity

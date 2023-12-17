@@ -39,14 +39,14 @@ int			key_hook(int keycode, t_all *all);
 
 // RAY
 t_ray		init_ray(t_vec3 origin, t_vec3 direction);
-void 		intersect_ray_sphere(t_ray r, t_sphere sphere, float *t1, float *t2);
+void 		intersect_ray_sphere(t_ray r, t_obj sphere, float *t1, float *t2);
 t_rgb 		trace_ray(t_ray r, t_scene scene);
 
 
 // LIGHT
 t_light 	light_create(t_vec3 position, int color, float intensity);
 t_ambient 	ambient_create(int color, float intensity);
-t_rgb 		compute_lighting(t_vec3 P, t_vec3 N, t_sphere *sphere, t_scene scene);
+t_rgb 		compute_lighting(t_vec3 P, t_vec3 N, t_obj *sphere, t_scene scene);
 
 
 // FREE MEMORY

@@ -5,6 +5,10 @@
 
 # define M_PI 3.14159265358979323846
 
+# define SPHERE			1
+# define PLANE			2
+# define CYLINDER		3
+
 typedef int bool;
 # define TRUE 	1 // while (1) - will never leave loop
 # define FALSE 	0
@@ -59,14 +63,6 @@ typedef struct s_ray
 
 }	t_ray;
 
-typedef struct s_sphere 
-{
-	double radius;
-	t_vec3 center;
-	t_rgb color;
-} t_sphere;
-
-
 typedef struct s_light
 {
 	t_vec3 		position;
@@ -82,18 +78,29 @@ typedef struct s_ambient
 
 }	t_ambient;
 
+
+typedef struct s_obj
+{
+	int			type;
+	t_vec3		center;
+	t_vec3		xyz_vec;
+	double		radius;
+	double		height;
+	t_rgb		color;
+
+}	t_obj;
+
 // Define the scene (assuming maximum 3 spheres for simplicity)
 typedef struct s_scene
 {
 	int				num_spheres;
 	int				num_lights;
-	t_sphere 		spheres[4];
+	t_obj 			obj[4];
+	//t_obj			objects[4];
 	float 			viewport_size[2];
 	float 			projection_plane_d;
 	t_ambient		ambient;
 	t_light			light;
-
-	//t_light		lights[2];
 
 } t_scene;
 
