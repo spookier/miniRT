@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acostin <acostin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 11:12:51 by acostin           #+#    #+#             */
-/*   Updated: 2023/12/18 00:52:26 by acostin          ###   ########.fr       */
+/*   Updated: 2023/12/18 02:43:43 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,41 +100,45 @@ void get_cylinder_centers(t_obj cylinder, t_vec3 *cy_center)
 			cylinder.center.z - delta * cylinder.xyz_vec.z);
 }
 
-int	intersect_ray_cylinder_body_norm(t_ray r, t_obj cylinder, float *t_body, float *d)
+void	intersect_ray_cylinder_body_norm(t_ray r, t_obj cylinder, float *t_body)
 {
 	t_vec3 rc;
 	float dot_n_d;
 	float dot_n_rc;
+	float	d[3];
 
 	rc = vec3_subtract(cylinder.center, r.origin);
 	dot_n_d = vec3_dot(r.direction, cylinder.xyz_vec);
 	dot_n_rc = vec3_dot(rc, cylinder.xyz_vec);
 	d[0] = vec3_dot(r.direction, r.direction) - dot_n_d * dot_n_d;
 	d[1] = -1 * (vec3_dot(rc, r.direction) - dot_n_d * dot_n_rc);
-	d[2] = (vec3_dot(rc, rc) - dot_n_rc * dot_n_rc)
+	d[2] = vec3_dot(rc, rc) - dot_n_rc * dot_n_rc
 		- cylinder.radius * cylinder.radius;
 	if (d[1] * d[1] - d[0] * d[2] < 0)
-		return (*t_body = INFINITY, -1);
+	{
+		*t_body = INFINITY;
+		return ;
+	}
 	*t_body = (-1 * d[1] - sqrt(d[1] * d[1] - d[0] * d[2])) / d[0];
 	if (*t_body < 0.0001)
 	{
 		*t_body = (-1 * d[1] + sqrt(d[1] * d[1] - d[0] * d[2])) / d[0];
 		if (*t_body < 0.0001)
-			return (*t_body = INFINITY, -1);
+			*t_body = INFINITY;
 	}
-	return (0);
 }
 
-float	intersect_ray_cylinder_body(t_ray r, t_obj cylinder, float *t_body, t_vec3 *cy_center)
-{
-	float	d[3];
-	
-	if (intersect_ray_cylinder_body_norm(r, cylinder, t_body, d) == -1)
+float	intersect_ray_cylinder_body(t_ray r, t_obj cylinder, t_vec3 *cy_center)
+{	
+	float t_body;
+
+	intersect_ray_cylinder_body_norm(r, cylinder, &t_body);
+	if (t_body == INFINITY)
 		return (INFINITY);
-	if (vec3_dot(vec3_subtract(vec3_add(r.origin, vec3_mult_scalar(r.direction, *t_body)), cy_center[TOP]), cylinder.xyz_vec) < 0
-		|| vec3_dot(vec3_subtract(vec3_add(r.origin, vec3_mult_scalar(r.direction, *t_body)), cy_center[BOTTOM]), cylinder.xyz_vec) > 0)
+	if (vec3_dot(vec3_subtract(vec3_add(r.origin, vec3_mult_scalar(r.direction, t_body)), cy_center[TOP]), cylinder.xyz_vec) > 0
+		|| vec3_dot(vec3_subtract(vec3_add(r.origin, vec3_mult_scalar(r.direction, t_body)), cy_center[BOTTOM]), cylinder.xyz_vec) < 0)
 		return (INFINITY);
-	return (*t_body);
+	return (t_body);
 }
 
 int check_cylinder_circle_radius(t_obj cylinder, t_vec3 hit_p, t_vec3 cy_center)
@@ -156,11 +160,12 @@ float intersect_ray_cylinder_circle_norm(float *t_circle)
 	return (t_circle[BOTTOM]);
 }
 
-float	intersect_ray_cylinder_circle(t_ray r, t_obj cylinder, float *t_circle, t_vec3 *cy_center)
+float	intersect_ray_cylinder_circle(t_ray r, t_obj cylinder, t_vec3 *cy_center)
 {
 	t_vec3 tc[2];
 	float dot[3];
 	t_vec3 hit_p[2];
+	float t_circle[2];
 
 	tc[TOP] = vec3_subtract(cy_center[TOP], r.origin);
 	tc[BOTTOM] = vec3_subtract(cy_center[BOTTOM], r.origin);
@@ -184,15 +189,40 @@ float	intersect_ray_cylinder_circle(t_ray r, t_obj cylinder, float *t_circle, t_
 	return (intersect_ray_cylinder_circle_norm(t_circle));
 }
 
-void	intersect_ray_cylinder(t_ray r, t_obj cylinder, float *t1, float *t2)
+t_vec3	get_surface_normal_cylider_body(t_ray r, t_obj cylinder, float t_body)
+{
+	t_vec3	hit_p;
+	t_vec3	c_p;
+	t_vec3	proj_c_p;
+	t_vec3	res;
+
+	hit_p = vec3_add(r.origin, vec3_mult_scalar(r.direction, t_body));
+	c_p = vec3_subtract(hit_p, cylinder.center);
+	proj_c_p = vec3_mult_scalar(cylinder.xyz_vec, (vec3_dot(cylinder.xyz_vec, c_p)
+			/ vec3_dot(cylinder.xyz_vec, cylinder.xyz_vec)));
+	res = vec3_subtract(hit_p, vec3_add(cylinder.center, proj_c_p));
+	return (res);
+}
+
+void	intersect_ray_cylinder(t_ray r, t_obj cylinder, float *t, t_vec3 *surface_normal)
 {
 	t_vec3	cy_center[2];
+	float	temp[2];
 
 	get_cylinder_centers(cylinder, cy_center);
-	*t1 = intersect_ray_cylinder_body(r, cylinder, t1, cy_center);
-	*t2 = intersect_ray_cylinder_circle(r, cylinder, t2, cy_center);
-	if (*t1 == INFINITY && *t2 == INFINITY)
-			return ;
+	temp[0] = intersect_ray_cylinder_body(r, cylinder, cy_center);
+	temp[1] = intersect_ray_cylinder_circle(r, cylinder, cy_center);
+	if (t)
+	{
+		t[0] = temp[0];
+		t[1] = temp[1];
+	}
+	if (surface_normal== NULL)
+		return ;
+	if (temp[0] < temp[1])
+		*surface_normal = get_surface_normal_cylider_body(r, cylinder, temp[0]);
+	else
+		*surface_normal = cylinder.xyz_vec;
 }
 
 t_obj	*find_closest_obj_for_ray(t_ray r, t_scene *scene, float *closest_t)
@@ -213,7 +243,7 @@ t_obj	*find_closest_obj_for_ray(t_ray r, t_scene *scene, float *closest_t)
 		else if (scene->obj[i].type == PLANE)
 			intersect_ray_plane(r, scene->obj[i], &t[0], &t[1]);
 		else if (scene->obj[i].type == CYLINDER)
-			intersect_ray_cylinder(r, scene->obj[i], &t[0], &t[1]);
+			intersect_ray_cylinder(r, scene->obj[i], t, NULL);
 
 		if (t[0] >= clips[0] && t[0] <= clips[1] && t[0] < *closest_t)
 		{
@@ -225,20 +255,6 @@ t_obj	*find_closest_obj_for_ray(t_ray r, t_scene *scene, float *closest_t)
 			*closest_t = t[1];
 			closest_obj = &scene->obj[i];
 		}
-		// if (scene->obj[i].type == CYLINDER)
-		// {
-		// 	if (t[0] >= clips[0] && t[0] <= clips[1] && t[0] < *closest_t && t[0] <= t[1])
-		// 	{
-		// 		*closest_t = t[0];
-		// 		closest_obj = &scene->obj[i];
-		// 	}
-		// 	if (t[1] >= clips[0] && t[1] <= clips[1] && t[1] < *closest_t && t[1] < t[0])
-		// 	{
-		// 		*closest_t = t[0];
-		// 		closest_obj = &scene->obj[i];
-		// 	}
-		// }
-
         i++;
     }
     return (closest_obj);
@@ -269,8 +285,8 @@ t_rgb trace_ray(t_ray r, t_scene scene)
 		normal_surface_intersec = vec3_subtract(point_intersec, closest_obj->center);	
 	else if (closest_obj->type == PLANE)
 		normal_surface_intersec = closest_obj->xyz_vec;
-	// else if (closest_obj->type == CYLINDER)
-	// 	normal_surface_intersec = 
+	else if (closest_obj->type == CYLINDER)
+		intersect_ray_cylinder(r, *closest_obj, NULL, &normal_surface_intersec);
 
 	vec3_normalize(&normal_surface_intersec);
 	// Compute the color at the intersection point with lighting

@@ -42,9 +42,9 @@ t_ray		init_ray(t_vec3 origin, t_vec3 direction);
 void 		intersect_ray_sphere(t_ray r, t_obj sphere, float *t1, float *t2);
 void		intersect_ray_plane(t_ray r, t_obj plane, float *t1, float *t2);
 void get_cylinder_centers(t_obj cylinder, t_vec3 *cy_center);
-float	intersect_ray_cylinder_body(t_ray r, t_obj cylinder, float *t_body, t_vec3 *cy_center);
-float	intersect_ray_cylinder_circle(t_ray r, t_obj cylinder, float *t_circle, t_vec3 *cy_center);
-void	intersect_ray_cylinder(t_ray r, t_obj cylinder, float *t1, float *t2);
+float	intersect_ray_cylinder_body(t_ray r, t_obj cylinder, t_vec3 *cy_center);
+float	intersect_ray_cylinder_circle(t_ray r, t_obj cylinder, t_vec3 *cy_center);
+void	intersect_ray_cylinder(t_ray r, t_obj cylinder, float *t, t_vec3 *surface_normal);
 t_rgb 		trace_ray(t_ray r, t_scene scene);
 
 
