@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:19:42 by yhwang            #+#    #+#             */
-/*   Updated: 2023/11/24 13:04:25 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/18 19:13:56 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_arg(char *argv)
 	return (0);
 }
 
-int	check_element(t_scene *scene)
+int	check_element(t_p_scene *scene)
 {
 	if (!scene->ambient->check)
 		return (err_msg("Map: A: element is missing"), 1);
@@ -44,11 +44,11 @@ int	check_element(t_scene *scene)
 	return (0);
 }
 
-t_scene	*parse(t_scene *scene, char *argv)
+t_p_scene	*parse(t_p_scene *scene, char *argv)
 {
 	if (check_arg(argv))
 		return (free_scene(scene, 0), NULL);
-	if (init_scene(scene))
+	if (parse_init_scene(scene))
 		return (free_scene(scene, 1), NULL);
 	if (parse_map(scene, argv))
 		return (free_scene(scene, 0), NULL);
@@ -57,20 +57,19 @@ t_scene	*parse(t_scene *scene, char *argv)
 	return (scene);
 }
 
-t_scene	*parse_main(int argc, char **argv)
+t_p_scene	*parse_main(int argc, char **argv)
 {
-	t_scene	*scene;
+	t_p_scene	*scene;
 
 	if (argc != 2 || !argv[1][0])
 	{
 		err_msg("argument error");
 		exit (1);
 	}
-	scene = (t_scene *)ft_calloc(sizeof(t_scene), 2);
+	scene = (t_p_scene *)ft_calloc(sizeof(t_p_scene), 2);
 	if (!scene)
 		return (err_msg("Malloc error"), NULL);
 	if (!parse(scene, argv[1]))
 		return (NULL);
-	print_scene(scene);
 	return (scene);
 }

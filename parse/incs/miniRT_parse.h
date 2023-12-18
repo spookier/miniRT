@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:39:00 by yhwang            #+#    #+#             */
-/*   Updated: 2023/11/24 12:41:59 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/18 20:57:20 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,70 +37,71 @@
 
 /* parse_main.c */
 int			check_arg(char *argv);
-int			check_element(t_scene *scene);
-t_scene		*parse(t_scene *scene, char *argv);
-t_scene		*parse_main(int argc, char **argv);
+int			check_element(t_p_scene *scene);
+t_p_scene	*parse(t_p_scene *scene, char *argv);
+t_p_scene	*parse_main(int argc, char **argv);
 
-/* init.c */
-int			init_scene_obj(t_scene *scene, int i);
-int			init_scene(t_scene *scene);
+/* parse_init.c */
+int			parse_init_scene_obj(t_p_scene *scene, int i);
+int			parse_init_scene(t_p_scene *scene);
 
 /* parse_map.c */
+void		change_tab_to_space(char **line);
 void		convert_line(char **line);
 void		finish_gnl(char **line, int fd, int flag);
-int			parse_map(t_scene *scene, char *argv);
+int			parse_map(t_p_scene *scene, char *argv);
 
 /* parse_check_id.c */
-int			parse_obj(t_scene *scene, char *line);
-int			check_id(t_scene *scene, char *line, int *flag);
+int			parse_obj(t_p_scene *scene, char *line);
+int			check_id(t_p_scene *scene, char *line, int *flag);
 
 /* parse_ambient.c */
-int			parse_ambient_lighting(t_scene *scene, char *lighting);
-int			parse_ambient_rgb(t_scene *scene, char *rgb);
-int			parse_ambient(t_scene *scene, char *line);
+int			parse_ambient_lighting(t_p_scene *scene, char *lighting);
+int			parse_ambient_rgb(t_p_scene *scene, char *rgb);
+int			parse_ambient(t_p_scene *scene, char *line);
 
 /* parse_camera.c */
-int			parse_camera_pos(t_scene *scene, char *pos);
-int			parse_camera_vec(t_scene *scene, char *vec);
-int			parse_camera_fov(t_scene *scene, char *fov);
-int			parse_camera(t_scene *scene, char *line);
+int			parse_camera_pos(t_p_scene *scene, char *pos);
+int			parse_camera_vec(t_p_scene *scene, char *vec);
+int			parse_camera_fov(t_p_scene *scene, char *fov);
+int			parse_camera(t_p_scene *scene, char *line);
 
 /* parse_light.c */
-int			parse_light_pos(t_scene *scene, char *pos);
-int			parse_light_brightness(t_scene *scene, char *brightness);
-int			parse_light_rgb(t_scene *scene, char *rgb);
-int			parse_light(t_scene *scene, char *line);
+int			parse_light_pos(t_p_scene *scene, char *pos);
+int			parse_light_brightness(t_p_scene *scene, char *brightness);
+int			parse_light_rgb(t_p_scene *scene, char *rgb);
+int			parse_light(t_p_scene *scene, char *line);
 
 /* parse_sphere.c */
-int			parse_sphere_pos(t_scene *scene, int i, char *pos);
-int			parse_sphere_diameter(t_scene *scene, int i, char *diameter);
-int			parse_sphere_rgb(t_scene *scene, int i, char *rgb);
-int			parse_sphere(t_scene *scene, int i, char *line);
+int			parse_sphere_pos(t_p_scene *scene, int i, char *pos);
+int			parse_sphere_diameter(t_p_scene *scene, int i, char *diameter);
+int			parse_sphere_rgb(t_p_scene *scene, int i, char *rgb);
+int			parse_sphere(t_p_scene *scene, int i, char *line);
 
 /* parse_plane.c */
-int			parse_plane_pos(t_scene *scene, int i, char *pos);
-int			parse_plane_vec(t_scene *scene, int i, char *vec);
-int			parse_plane_rgb(t_scene *scene, int i, char *rgb);
-int			parse_plane(t_scene *scene, int i, char *line);
+int			parse_plane_pos(t_p_scene *scene, int i, char *pos);
+int			parse_plane_vec(t_p_scene *scene, int i, char *vec);
+int			parse_plane_rgb(t_p_scene *scene, int i, char *rgb);
+int			parse_plane(t_p_scene *scene, int i, char *line);
 
 /* parse_cyinder.c */
-int			parse_cylinder_pos(t_scene *scene, int i, char *pos);
-int			parse_cylinder_vec(t_scene *scene, int i, char *vec);
-int			parse_cylinder_diameter_height(t_scene *scene,
+int			parse_cylinder_pos(t_p_scene *scene, int i, char *pos);
+int			parse_cylinder_vec(t_p_scene *scene, int i, char *vec);
+int			parse_cylinder_diameter_height(t_p_scene *scene,
 				int i, char *diameter, char *height);
-int			parse_cylinder_rgb(t_scene *scene, int i, char *rgb);
-int			parse_cylinder(t_scene *scene, int i, char *line);
+int			parse_cylinder_rgb(t_p_scene *scene, int i, char *rgb);
+int			parse_cylinder(t_p_scene *scene, int i, char *line);
 
 /* print_scene.c */
-void		print_sphere(t_scene *scene);
-void		print_plane(t_scene *scene);
-void		print_cylinder(t_scene *scene);
-void		print_scene(t_scene *scene);
+void		print_sphere(t_p_scene *scene);//
+void		print_plane(t_p_scene *scene);//
+void		print_cylinder(t_p_scene *scene);//
+void		print_scene(t_p_scene *scene);//
 
 /* utils_lib.c */
 void		*ft_realloc(void *old_ptr, size_t old_len, size_t new_len);
 void		free_2d(char **str);
-void		free_scene(t_scene *scene, int flag);
+void		free_scene(t_p_scene *scene, int flag);
 
 /* utils_range.c */
 int			check_int(int i, int min, int max);

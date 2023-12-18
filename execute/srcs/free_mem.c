@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_mem.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acostin <acostin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 12:11:40 by acostin           #+#    #+#             */
-/*   Updated: 2023/12/04 12:12:31 by acostin          ###   ########.fr       */
+/*   Updated: 2023/12/18 20:29:01 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ void	free_mem(t_all *all)
 	free_img(all);
 	if (all->g_eng.mlx)
 		free(all->g_eng.mlx);
+	if (all->scene.obj)
+		free(all->scene.obj);
 	free(all);
 }

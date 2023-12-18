@@ -6,13 +6,13 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 18:52:44 by yhwang            #+#    #+#             */
-/*   Updated: 2023/11/21 18:52:59 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/18 18:38:43 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/miniRT_parse.h"
 
-int	parse_ambient_lighting(t_scene *scene, char *lighting)
+int	parse_ambient_lighting(t_p_scene *scene, char *lighting)
 {
 	if (check_double(ft_atod(lighting), 0, 1))
 		return (err_msg("Map error: A: invalid lighting value"), 1);
@@ -20,7 +20,7 @@ int	parse_ambient_lighting(t_scene *scene, char *lighting)
 	return (0);
 }
 
-int	parse_ambient_rgb(t_scene *scene, char *rgb)
+int	parse_ambient_rgb(t_p_scene *scene, char *rgb)
 {
 	char	**tmp;
 
@@ -36,7 +36,7 @@ int	parse_ambient_rgb(t_scene *scene, char *rgb)
 	return (free_2d(tmp), 0);
 }
 
-int	parse_ambient(t_scene *scene, char *line)
+int	parse_ambient(t_p_scene *scene, char *line)
 {
 	char	**token;
 

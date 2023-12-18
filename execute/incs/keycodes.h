@@ -1,7 +1,6 @@
 #ifndef KEYCODES_H
 # define KEYCODES_H
 
-
 /* linux key codes */
 # define KEY_UP				0xFF52
 # define KEY_DOWN			0xFF54

@@ -6,11 +6,24 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:43:32 by yhwang            #+#    #+#             */
-/*   Updated: 2023/11/21 19:05:14 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/18 20:43:10 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/miniRT_parse.h"
+
+void	change_tab_to_space(char **line)
+{
+	int	i;
+
+	i = 0;
+	while ((*line)[i])
+	{
+		if ((*line)[i] == '\t')
+			(*line)[i] = ' ';
+		i++;
+	}
+}
 
 void	convert_line(char **line)
 {
@@ -37,6 +50,7 @@ void	convert_line(char **line)
 		free(*line);
 		*line = new_line;
 	}
+	change_tab_to_space(line);
 }
 
 void	finish_gnl(char **line, int fd, int flag)
@@ -54,7 +68,7 @@ void	finish_gnl(char **line, int fd, int flag)
 	close(fd);
 }
 
-int	parse_map(t_scene *scene, char *argv)
+int	parse_map(t_p_scene *scene, char *argv)
 {
 	int		fd;
 	int		flag;

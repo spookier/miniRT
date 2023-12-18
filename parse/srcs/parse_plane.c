@@ -6,13 +6,13 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 18:24:56 by yhwang            #+#    #+#             */
-/*   Updated: 2023/11/21 19:26:05 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/18 18:39:27 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/miniRT_parse.h"
 
-int	parse_plane_pos(t_scene *scene, int i, char *pos)
+int	parse_plane_pos(t_p_scene *scene, int i, char *pos)
 {
 	char	**tmp;
 
@@ -28,7 +28,7 @@ int	parse_plane_pos(t_scene *scene, int i, char *pos)
 	return (free_2d(tmp), 0);
 }
 
-int	parse_plane_vec(t_scene *scene, int i, char *vec)
+int	parse_plane_vec(t_p_scene *scene, int i, char *vec)
 {
 	char	**tmp;
 
@@ -44,7 +44,7 @@ int	parse_plane_vec(t_scene *scene, int i, char *vec)
 	return (free_2d(tmp), 0);
 }
 
-int	parse_plane_rgb(t_scene *scene, int i, char *rgb)
+int	parse_plane_rgb(t_p_scene *scene, int i, char *rgb)
 {
 	char	**tmp;
 
@@ -60,7 +60,7 @@ int	parse_plane_rgb(t_scene *scene, int i, char *rgb)
 	return (free_2d(tmp), 0);
 }
 
-int	parse_plane(t_scene *scene, int i, char *line)
+int	parse_plane(t_p_scene *scene, int i, char *line)
 {
 	char	**token;
 

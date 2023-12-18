@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:41:54 by yhwang            #+#    #+#             */
-/*   Updated: 2023/11/21 17:37:43 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/18 18:39:40 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	free_2d(char **str)
 	free(str);
 }
 
-void	free_scene(t_scene *scene, int flag)
+void	free_scene(t_p_scene *scene, int flag)
 {
 	int	i;
 

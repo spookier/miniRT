@@ -6,13 +6,13 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 18:57:00 by yhwang            #+#    #+#             */
-/*   Updated: 2023/11/21 19:02:32 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/18 18:38:49 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/miniRT_parse.h"
 
-int	parse_camera_pos(t_scene *scene, char *pos)
+int	parse_camera_pos(t_p_scene *scene, char *pos)
 {
 	char	**tmp;
 
@@ -28,7 +28,7 @@ int	parse_camera_pos(t_scene *scene, char *pos)
 	return (free_2d(tmp), 0);
 }
 
-int	parse_camera_vec(t_scene *scene, char *vec)
+int	parse_camera_vec(t_p_scene *scene, char *vec)
 {
 	char	**tmp;
 
@@ -44,7 +44,7 @@ int	parse_camera_vec(t_scene *scene, char *vec)
 	return (free_2d(tmp), 0);
 }
 
-int	parse_camera_fov(t_scene *scene, char *fov)
+int	parse_camera_fov(t_p_scene *scene, char *fov)
 {
 	if (check_int(ft_atoi(fov), 0, 180))
 		return (err_msg("Map error: C: invalid fov value"), 1);
@@ -52,7 +52,7 @@ int	parse_camera_fov(t_scene *scene, char *fov)
 	return (0);
 }
 
-int	parse_camera(t_scene *scene, char *line)
+int	parse_camera(t_p_scene *scene, char *line)
 {
 	char	**token;
 

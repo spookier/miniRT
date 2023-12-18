@@ -6,13 +6,13 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:47:31 by yhwang            #+#    #+#             */
-/*   Updated: 2023/11/21 19:26:16 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/18 18:39:10 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/miniRT_parse.h"
 
-int	parse_light_pos(t_scene *scene, char *pos)
+int	parse_light_pos(t_p_scene *scene, char *pos)
 {
 	char	**tmp;
 
@@ -28,7 +28,7 @@ int	parse_light_pos(t_scene *scene, char *pos)
 	return (free_2d(tmp), 0);
 }
 
-int	parse_light_brightness(t_scene *scene, char *brightness)
+int	parse_light_brightness(t_p_scene *scene, char *brightness)
 {
 	if (check_double(ft_atod(brightness), 0, 1))
 		return (err_msg("Map error: L: invalid brightness value"), 1);
@@ -36,7 +36,7 @@ int	parse_light_brightness(t_scene *scene, char *brightness)
 	return (0);
 }
 
-int	parse_light_rgb(t_scene *scene, char *rgb)
+int	parse_light_rgb(t_p_scene *scene, char *rgb)
 {
 	char	**tmp;
 
@@ -52,7 +52,7 @@ int	parse_light_rgb(t_scene *scene, char *rgb)
 	return (free_2d(tmp), 0);
 }
 
-int	parse_light(t_scene *scene, char *line)
+int	parse_light(t_p_scene *scene, char *line)
 {
 	char	**token;
 

@@ -6,7 +6,7 @@
 #    By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 15:15:26 by yhwang            #+#    #+#              #
-#    Updated: 2023/11/23 16:45:26 by yhwang           ###   ########.fr        #
+#    Updated: 2023/12/18 19:13:34 by yhwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRCS_DIR = ./srcs/
 INCS_DIR = ./incs/
 
 FILES = $(SRCS_DIR)main \
-	$(SRCS_DIR)init \
+	$(SRCS_DIR)parse_init \
 	$(SRCS_DIR)parse_map \
 	$(SRCS_DIR)parse_check_id \
 	$(SRCS_DIR)parse_ambient \
@@ -35,7 +35,6 @@ FILES = $(SRCS_DIR)main \
 	$(SRCS_DIR)parse_sphere \
 	$(SRCS_DIR)parse_plane \
 	$(SRCS_DIR)parse_cylinder \
-	$(SRCS_DIR)print_scene \
 	$(SRCS_DIR)utils_lib \
 	$(SRCS_DIR)utils_range \
 	$(SRCS_DIR)utils

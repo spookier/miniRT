@@ -3,25 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acostin <acostin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:26:09 by yhwang            #+#    #+#             */
-/*   Updated: 2023/12/13 23:06:25 by acostin          ###   ########.fr       */
+/*   Updated: 2023/12/18 21:09:15 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./parse/incs/miniRT_parse.h"
-// #include "./execute/incs/minirt.h"
+#include "./execute/incs/minirt.h"
 
 int	main(int argc, char **argv)
 {
-	t_scene	*scene;
+	t_p_scene	*p_scene;
+	t_all		*all;
 
-	scene = parse_main(argc, argv);
-	if (!scene)
+	p_scene = parse_main(argc, argv);
+	if (!p_scene)
 		return (1);
-	//execute
-
-	free_scene(scene, 0);
+	all = NULL;
+	if (alloc_struct_mem(&all) == -1)
+		exit_prog(all, "Error - Malloc failed");
+	init_vars(p_scene, all);
+	free_scene(p_scene, 0);
+	start_mlx(all);
+	exit_prog(all, NULL);
 	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 18:27:39 by yhwang            #+#    #+#             */
-/*   Updated: 2023/11/21 19:25:50 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/18 18:39:33 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/miniRT_parse.h"
 
-int	parse_sphere_pos(t_scene *scene, int i, char *pos)
+int	parse_sphere_pos(t_p_scene *scene, int i, char *pos)
 {
 	char	**tmp;
 
@@ -28,7 +28,7 @@ int	parse_sphere_pos(t_scene *scene, int i, char *pos)
 	return (free_2d(tmp), 0);
 }
 
-int	parse_sphere_diameter(t_scene *scene, int i, char *diameter)
+int	parse_sphere_diameter(t_p_scene *scene, int i, char *diameter)
 {
 	if (check_double(ft_atod(diameter), 0, 0))
 		return (err_msg("Map error: sp: invalid diameter value"), 1);
@@ -36,7 +36,7 @@ int	parse_sphere_diameter(t_scene *scene, int i, char *diameter)
 	return (0);
 }
 
-int	parse_sphere_rgb(t_scene *scene, int i, char *rgb)
+int	parse_sphere_rgb(t_p_scene *scene, int i, char *rgb)
 {
 	char	**tmp;
 
@@ -52,7 +52,7 @@ int	parse_sphere_rgb(t_scene *scene, int i, char *rgb)
 	return (free_2d(tmp), 0);
 }
 
-int	parse_sphere(t_scene *scene, int i, char *line)
+int	parse_sphere(t_p_scene *scene, int i, char *line)
 {
 	char	**token;
 
