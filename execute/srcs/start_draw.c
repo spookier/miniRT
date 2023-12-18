@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_draw.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acostin <acostin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 12:31:13 by acostin           #+#    #+#             */
-/*   Updated: 2023/12/04 17:13:46 by acostin          ###   ########.fr       */
+/*   Updated: 2023/12/18 21:32:24 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	render_scene(t_scene scene, t_all *all)
 	int		xy[2];
 
 	cam = vec3(0, 0, 0);
-
 	xy[0] = -all->viewp.img_width / 2;
 	while (xy[0] < all->viewp.img_width / 2)
 	{
@@ -60,13 +59,10 @@ void	render_scene(t_scene scene, t_all *all)
 	}
 }
 
-int start_draw(t_all *all)
+int	start_draw(t_all *all)
 {
 	printf("Rendering... \n");
-
 	render_scene(all->scene, all);
-	
 	printf("Done.\n");
-	
-	return(0);
+	return (0);
 }
