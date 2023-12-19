@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   viewport.c                                         :+:      :+:    :+:   */
+/*   matrix.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 12:16:48 by acostin           #+#    #+#             */
-/*   Updated: 2023/12/19 03:48:41 by yhwang           ###   ########.fr       */
+/*   Created: 2023/12/19 09:14:40 by yhwang            #+#    #+#             */
+/*   Updated: 2023/12/19 09:30:57 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/minirt.h"
+#ifndef MATRIX_H
+# define MATRIX_H
 
-t_vec3	canvas_to_viewport(int Cx, int Cy, t_viewport *viewp)
+# include "minirt.h"
+
+typedef struct s_matrix3
 {
-	t_vec3	v;
+	t_vec3	c1;
+	t_vec3	c2;
+	t_vec3	c3;
+}	t_matrix3;
 
-	v.x = Cx * (viewp->viewport_width / viewp->img_width);
-	v.y = Cy * (viewp->viewport_height / viewp->img_height);
-	v.z = viewp->distance_cam_to_viewport;
-	return (v);
-}
+t_matrix3		matrix3(t_vec3 c1, t_vec3 c2, t_vec3 c3);
+t_vec3		matrix_mul(t_matrix3 m, t_vec3 v);
+
+#endif

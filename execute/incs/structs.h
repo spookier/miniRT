@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   structs.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/04 11:43:51 by acostin           #+#    #+#             */
+/*   Updated: 2023/12/19 02:04:40 by yhwang           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
@@ -98,10 +110,7 @@ typedef struct s_scene
 	int				num_spheres;
 	int				num_planes;
 	int				num_cylinder;
-	int				num_lights;
 	t_obj			*obj;
-	float			viewport_size[2];
-	float			projection_plane_d;
 	t_ambient		ambient;
 	t_light			light;
 

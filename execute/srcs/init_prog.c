@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_prog.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acostin <acostin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 12:12:40 by acostin           #+#    #+#             */
-/*   Updated: 2023/12/04 12:15:36 by acostin          ###   ########.fr       */
+/*   Updated: 2023/12/19 01:20:06 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	init_res_and_mlx(t_all *all)
 static void	end_mlx_and_redraw(t_all *all)
 {
 	mlx_key_hook(all->g_eng.mlx_win, key_hook, all);
+	mlx_hook(all->g_eng.mlx_win, 17, 2, mlx_exit, all);
 	mlx_put_image_to_window(all->g_eng.mlx, \
 	all->g_eng.mlx_win, all->img.img, 0, 0);
 	mlx_loop(all->g_eng.mlx);

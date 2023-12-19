@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 12:31:13 by acostin           #+#    #+#             */
-/*   Updated: 2023/12/18 21:32:24 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/19 09:51:27 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	render_scene(t_scene scene, t_all *all)
 	t_rgb	color;
 	int		xy[2];
 
-	cam = vec3(0, 0, 0);
+	cam = all->cam.origin;
 	xy[0] = -all->viewp.img_width / 2;
 	while (xy[0] < all->viewp.img_width / 2)
 	{

@@ -6,7 +6,7 @@
 #    By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 16:05:09 by yhwang            #+#    #+#              #
-#    Updated: 2023/12/18 20:51:04 by yhwang           ###   ########.fr        #
+#    Updated: 2023/12/19 09:19:11 by yhwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,15 +48,21 @@ FILES = 	./main \
 			$(PARSE_DIR)utils\
 			$(EXECUTE_DIR)alloc_mem \
 			$(EXECUTE_DIR)free_mem \
+			$(EXECUTE_DIR)set_cam_vec \
 			$(EXECUTE_DIR)start_draw \
 			$(EXECUTE_DIR)key_hooks \
 			$(EXECUTE_DIR)exit_prog \
 			$(EXECUTE_DIR)init_prog \
+			$(EXECUTE_DIR)init_scene \
 			$(EXECUTE_DIR)init_vars \
 			$(EXECUTE_DIR)vec3_1 \
 			$(EXECUTE_DIR)vec3_2 \
+			$(EXECUTE_DIR)matrix \
 			$(EXECUTE_DIR)viewport \
 			$(EXECUTE_DIR)ray \
+			$(EXECUTE_DIR)ray_sp_pl \
+			$(EXECUTE_DIR)ray_cy_body \
+			$(EXECUTE_DIR)ray_cy_circle \
 			$(EXECUTE_DIR)light \
 			$(EXECUTE_DIR)rgb
 

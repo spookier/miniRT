@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:26:09 by yhwang            #+#    #+#             */
-/*   Updated: 2023/12/18 21:09:15 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/19 09:52:12 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	main(int argc, char **argv)
 		exit_prog(all, "Error - Malloc failed");
 	init_vars(p_scene, all);
 	free_scene(p_scene, 0);
+	if (all->cam.direction.z != -1)
+		set_cam_vec(all);
 	start_mlx(all);
 	exit_prog(all, NULL);
 	return (0);

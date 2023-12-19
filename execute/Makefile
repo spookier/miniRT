@@ -21,10 +21,14 @@ FILES =		$(SRCS_DIR)main.c \
 			$(SRCS_DIR)exit_prog.c \
 			$(SRCS_DIR)init_prog.c \
 			$(SRCS_DIR)init_vars.c \
+			$(SRCS_DIR)init_scene.c \
 			$(SRCS_DIR)vec3_1.c \
 			$(SRCS_DIR)vec3_2.c \
 			$(SRCS_DIR)viewport.c \
 			$(SRCS_DIR)ray.c \
+			$(SRCS_DIR)ray_sp_pl.c \
+			$(SRCS_DIR)ray_cy_body.c \
+			$(SRCS_DIR)ray_cy_circle.c \
 			$(SRCS_DIR)light.c \
 			$(SRCS_DIR)rgb.c \
 
