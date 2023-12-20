@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 12:15:39 by acostin           #+#    #+#             */
-/*   Updated: 2023/12/19 09:00:14 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/20 02:55:41 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,12 @@ static void	init_vars_viewport(t_p_scene *p_scene, t_viewport *viewp)
 	viewp->viewport_width = 1.0;
 	viewp->viewport_height = 2 * 1 * tan(viewp->fov * PI / 360);
 	viewp->viewport_width = viewp->viewport_height
-			* viewp->img_width / viewp->img_height;
+		* viewp->img_width / viewp->img_height;
 	viewp->distance_cam_to_viewport = 1.0;
-	
 }
 
 static void	init_camera_vars(t_p_scene *p_scene, t_camera *camera)
 {
-	// camera doesn't move
 	camera->origin = vec3(p_scene->camera->xyz_pos.x,
 			p_scene->camera->xyz_pos.y, p_scene->camera->xyz_pos.z);
 	camera->direction = vec3(p_scene->camera->xyz_vec.x,

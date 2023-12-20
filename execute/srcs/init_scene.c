@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 02:33:56 by yhwang            #+#    #+#             */
-/*   Updated: 2023/12/19 02:41:30 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/20 02:55:57 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	init_obj_pl_dup(t_p_scene *p_scene, t_scene *scene)
 {
 	int	i;
 	int	j;
-	
+
 	i = p_scene->n_sphere + p_scene->n_plane + p_scene->n_cylinder;
 	j = -1;
 	while (p_scene->obj[++j])

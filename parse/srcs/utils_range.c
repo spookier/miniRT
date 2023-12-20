@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 13:17:24 by yhwang            #+#    #+#             */
-/*   Updated: 2023/11/21 17:29:47 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/20 02:15:55 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ int	check_xyz_vec(double x, double y, double z)
 		return (1);
 	if (!(-1 <= x && x <= 1) || !(-1 <= y && y <= 1) || !(-1 <= z && z <= 1))
 		return (1);
-	if (!(1 - EPSILON < sqrt(x * x + y * y + z * z)
-			&& sqrt(x * x + y * y + z * z) < 1 + EPSILON))
+	if (sqrt(x * x + y * y + z * z) != 1)
 		return (1);
 	return (0);
 }

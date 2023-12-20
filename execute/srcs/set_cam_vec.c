@@ -6,16 +6,39 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 08:54:39 by yhwang            #+#    #+#             */
-/*   Updated: 2023/12/19 12:28:25 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/20 02:56:32 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/minirt.h"
 
-void	rotate_scene(t_scene *scene, t_camera *cam, t_matrix3 m)
+t_matrix3	get_metrix(float angle, char flag)
 {
-	int	i;
-	
+	t_matrix3	res;
+
+	if (flag == 'x')
+		res = matrix3(vec3(1, 0, 0), vec3(0, cos(angle), sin(angle)),
+				vec3(0, -1 * sin(angle), cos(angle)));
+	else if (flag == 'y')
+		res = matrix3(vec3(cos(angle), 0, -1 * sin(angle)),
+				vec3(0, 1, 0), vec3(sin(angle), 0, cos(angle)));
+	else if (flag == 'z')
+		res = matrix3(vec3(cos(angle), sin(angle), 0),
+				vec3(-1 * sin(angle), cos(angle), 0), vec3(0, 0, 1));
+	return (res);
+}
+
+void	rotate_scene(t_scene *scene, t_camera *cam, float angle, char flag)
+{
+	t_matrix3	m;
+	int			i;
+
+	if (flag == 'x')
+		m = get_metrix(angle, 'x');
+	else if (flag == 'y')
+		m = get_metrix(angle, 'y');
+	else if (flag == 'z')
+		m = get_metrix(angle, 'z');
 	i = -1;
 	while (++i < scene->num_spheres + scene->num_planes + scene->num_cylinder)
 	{
@@ -25,69 +48,30 @@ void	rotate_scene(t_scene *scene, t_camera *cam, t_matrix3 m)
 				vec3_mult_scalar(scene->obj[i].xyz_vec, DELTA));
 	}
 	scene->light.position = matrix_mul(m, scene->light.position);
+	if (flag == 'x')
+		m = get_metrix((angle), 'x');
+	else if (flag == 'y')
+		m = get_metrix((2 * PI - angle), 'y');
 	cam->origin = matrix_mul(m, cam->origin);
+	cam->origin = vec3_add(cam->origin,
+			vec3_mult_scalar(cam->direction, DELTA));
 }
-
-void	rotate_y_axis(t_scene *scene, t_camera *cam)
-{
-	t_matrix3	m;
-
-	if (cam->direction.x == 0
-		&& cam->direction.y == 0 && cam->direction.z == 1)
-		m = matrix3(vec3(cos(PI), 0, -1 * sin(PI)),
-			vec3(0, 1, 0), vec3(sin(PI), 0, cos(PI)));
-	else if (cam->direction.x == -1
-		&& cam->direction.y == 0 && cam->direction.z == 0)
-		m = matrix3(vec3(cos(PI / 2), 0, -1 * sin(PI / 2)),
-			vec3(0, 1, 0), vec3(sin(PI / 2), 0, cos(PI / 2)));
-	else if (cam->direction.x == 1
-		&& cam->direction.y == 0 && cam->direction.z == 0)
-		m = matrix3(vec3(cos(3 * PI / 2), 0, -1 * sin(3 * PI / 2)),
-			vec3(0, 1, 0), vec3(sin(3 * PI / 2), 0, cos(3 * PI / 2)));
-	rotate_scene(scene, cam, m);
-}
-
-void	rotate_x_axis(t_scene *scene, t_camera *cam)
-{
-	t_matrix3	m;
-
-	if (cam->direction.x == 0
-		&& cam->direction.y == -1 && cam->direction.z == 0)
-		m = matrix3(vec3(1, 0, 0), vec3(0, cos(3 * PI / 2), sin(3 * PI / 2)),
-			vec3(0, -1 * sin(3 * PI / 2), cos(3 * PI / 2)));
-	else if (cam->direction.x == 0
-		&& cam->direction.y == 1 && cam->direction.z == 0)
-		m = matrix3(vec3(1, 0, 0), vec3(0, cos(PI / 2), sin(PI / 2)),
-			vec3(0, -1 * sin(PI / 2), cos(PI / 2)));
-	rotate_scene(scene, cam, m);
-}
-
-// void	rotate_x_y_axis(t_scene *scene, t_camera *cam)
-// {
-// 	t_matrix3	m;
-// 	float		val_cos;
-// 	float		val_sin;
-
-// 	val_cos = 
-// }
 
 void	set_cam_vec(t_all *all)
 {
 	if (all->cam.direction.x == 0
-		&& all->cam.direction.y == 0 && all->cam.direction.z == 1)
-		rotate_y_axis(&all->scene, &all->cam);
+		&& all->cam.direction.y == 0 && all->cam.direction.z == -1)
+		rotate_scene(&all->scene, &all->cam, PI, 'y');
 	else if (all->cam.direction.x == -1
 		&& all->cam.direction.y == 0 && all->cam.direction.z == 0)
-		rotate_y_axis(&all->scene, &all->cam);
+		rotate_scene(&all->scene, &all->cam, 3 * PI / 2, 'y');
 	else if (all->cam.direction.x == 1
 		&& all->cam.direction.y == 0 && all->cam.direction.z == 0)
-		rotate_y_axis(&all->scene, &all->cam);
+		rotate_scene(&all->scene, &all->cam, PI / 2, 'y');
 	else if (all->cam.direction.x == 0
 		&& all->cam.direction.y == -1 && all->cam.direction.z == 0)
-		rotate_x_axis(&all->scene, &all->cam);
+		rotate_scene(&all->scene, &all->cam, 3 * PI / 2, 'x');
 	else if (all->cam.direction.x == 0
 		&& all->cam.direction.y == 1 && all->cam.direction.z == 0)
-		rotate_x_axis(&all->scene, &all->cam);
-// 	else
-// 		rotate_x_y_axis(&all->scene, &all->cam);
+		rotate_scene(&all->scene, &all->cam, PI / 2, 'x');
 }
