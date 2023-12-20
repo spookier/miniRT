@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 00:45:21 by yhwang            #+#    #+#             */
-/*   Updated: 2023/12/19 04:26:19 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/20 14:44:28 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ float	intersect_ray_cylinder_circle(t_ray r,
 	tc[TOP] = vec3_subtract(cy_center[TOP], r.origin);
 	tc[BOTTOM] = vec3_subtract(cy_center[BOTTOM], r.origin);
 	dot[0] = vec3_dot(cylinder.xyz_vec, r.direction);
-	if (dot == 0)
+	if (dot[0] == 0)
 		return (INFINITY);
 	dot[1] = vec3_dot(cylinder.xyz_vec, tc[TOP]);
 	dot[2] = vec3_dot(cylinder.xyz_vec, tc[BOTTOM]);

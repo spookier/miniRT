@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 08:54:39 by yhwang            #+#    #+#             */
-/*   Updated: 2023/12/20 02:56:32 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/20 16:59:58 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ t_matrix3	get_metrix(float angle, char flag)
 {
 	t_matrix3	res;
 
+	res = matrix3(vec3(0, 0, 0), vec3(0, 0, 0), vec3(0, 0, 0));
 	if (flag == 'x')
 		res = matrix3(vec3(1, 0, 0), vec3(0, cos(angle), sin(angle)),
 				vec3(0, -1 * sin(angle), cos(angle)));

@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 11:43:51 by acostin           #+#    #+#             */
-/*   Updated: 2023/12/19 09:53:41 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/20 16:52:22 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@
 # define PI	3.14159265359
 # define DELTA	1e-10
 
+# define THETA	PI / 6
+
+# define CYAN			"\x1b[36m"
+# define YELLOW			"\x1b[33m"
+
 // ALLOC MEMORY
 int			alloc_struct_mem(t_all **all);
 
@@ -48,6 +53,7 @@ t_rgb		create_rgb(double r, double g, double b);
 int			convert_rgb_to_int(t_rgb color);
 
 // SET CAMERA VECTOR
+void	rotate_scene(t_scene *scene, t_camera *cam, float angle, char flag);
 void		set_cam_vec(t_all *all);
 
 // DRAWING
@@ -89,5 +95,12 @@ void		free_mem(t_all *all);
 // EXIT PROGRAM
 void		exit_prog(t_all *all, char *str);
 int			mlx_exit(t_all *all);
+
+//temp
+int	move_x_hook(int keycode, t_all *all);
+int	pos_move_hook(int keycode, t_all *all);
+int	vec_rotate_hook(int keycode, t_all *all);
+int	camera_hook(int keycode, t_all *all);
+int	light_hook(int keycode, t_all *all);
 
 #endif

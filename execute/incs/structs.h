@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 11:43:51 by acostin           #+#    #+#             */
-/*   Updated: 2023/12/19 02:04:40 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/20 15:53:29 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,10 @@ typedef struct s_all
 	t_viewport		viewp;
 	t_camera		cam;
 	t_scene			scene;
+	int			key_flag_1;
+	int			key_flag_2;
+	int			key_flag_3;
+	int			key_flag_4;
 
 }	t_all;
 

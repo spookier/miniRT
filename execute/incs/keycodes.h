@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 11:43:51 by acostin           #+#    #+#             */
-/*   Updated: 2023/12/19 00:47:45 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/20 15:05:50 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,13 @@
 # define KEYCODES_H
 
 /* linux key codes */
+# define KEY_ESC			0xFF1B
+# define KEY_SPACE			0x20
+
 # define KEY_UP				0xFF52
 # define KEY_DOWN			0xFF54
-# define KEY_ESC			0xFF1B
+# define KEY_LEFT			0xFF51
+# define KEY_RIGHT			0xFF53
 
 # define KEY_0				0x30
 # define KEY_1				0x31
