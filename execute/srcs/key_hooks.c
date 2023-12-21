@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:48:34 by acostin           #+#    #+#             */
-/*   Updated: 2023/12/21 01:27:16 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/21 03:04:04 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -318,17 +318,17 @@ int	vec_rotate_hook(int keycode, t_all *all)
 		else if (all->key_flag_id == SP)
 		{
 			printf("%s[ SPHERE: %d ]%s\n", CYAN, all->sp + 1, BLACK);
-			mlx_key_hook(all->g_eng.mlx_win, light_hook, all);
+			mlx_key_hook(all->g_eng.mlx_win, obj_hook, all);
 		}
 		else if (all->key_flag_id == PL)
 		{
 			printf("%s[ PLANE: %d ]%s\n", CYAN, all->pl + 1, BLACK);
-			mlx_key_hook(all->g_eng.mlx_win, light_hook, all);
+			mlx_key_hook(all->g_eng.mlx_win, obj_hook, all);
 		}
 		else if (all->key_flag_id == CY)
 		{
 			printf("%s[ CYLINDER: %d ]%s\n", CYAN, all->cy + 1, BLACK);
-			mlx_key_hook(all->g_eng.mlx_win, light_hook, all);
+			mlx_key_hook(all->g_eng.mlx_win, obj_hook, all);
 		}
 	}
 	else if (keycode == KEY_X)
