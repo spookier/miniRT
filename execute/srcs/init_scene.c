@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 02:33:56 by yhwang            #+#    #+#             */
-/*   Updated: 2023/12/20 02:55:57 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/21 02:29:30 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ static void	init_obj_pl_dup(t_p_scene *p_scene, t_scene *scene)
 					p_scene->obj[j]->xyz_pos.y, p_scene->obj[j]->xyz_pos.z);
 			scene->obj[i].xyz_vec = vec3(p_scene->obj[j]->xyz_vec.x,
 					p_scene->obj[j]->xyz_vec.y, p_scene->obj[j]->xyz_vec.z);
+			scene->obj[i].color = create_rgb(p_scene->obj[j]->rgb.r,
+					p_scene->obj[j]->rgb.g, p_scene->obj[j]->rgb.b);
 			scene->obj[i].center = vec3_subtract(scene->obj[i].center,
 					vec3_mult_scalar(scene->obj[i].xyz_vec, 0.001));
 			scene->obj[i].xyz_vec = vec3_mult_scalar(scene->obj[i].xyz_vec, -1);
-			scene->obj[i].color = create_rgb(p_scene->obj[j]->rgb.r,
-					p_scene->obj[j]->rgb.g, p_scene->obj[j]->rgb.b);
 			i++;
 		}
 	}

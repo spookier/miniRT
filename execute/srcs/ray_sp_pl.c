@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 00:45:16 by yhwang            #+#    #+#             */
-/*   Updated: 2023/12/19 00:45:17 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/21 01:59:51 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	intersect_ray_plane(t_ray r, t_obj plane, float *t1, float *t2)
 	}
 	dot_n_rc = vec3_dot(plane.xyz_vec, rc);
 	*t1 = dot_n_rc / dot_n_d;
-	*t2 = dot_n_rc / dot_n_d + 0.0001;
+	*t2 = dot_n_rc / dot_n_d;
 	if (*t1 < 0.0001 || *t2 < 0.0001)
 	{
 		*t1 = INFINITY;

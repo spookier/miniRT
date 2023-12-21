@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 08:54:39 by yhwang            #+#    #+#             */
-/*   Updated: 2023/12/20 16:59:58 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/21 00:55:41 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ t_matrix3	get_metrix(float angle, char flag)
 	return (res);
 }
 
+void	rotate_obj(t_obj *obj, t_matrix3 m)
+{
+	obj->center = matrix_mul(m, obj->center);
+		obj->xyz_vec = matrix_mul(m, obj->xyz_vec);
+		obj->center = vec3_add(obj->center,
+				vec3_mult_scalar(obj->xyz_vec, DELTA));
+}
+
 void	rotate_scene(t_scene *scene, t_camera *cam, float angle, char flag)
 {
 	t_matrix3	m;
@@ -42,17 +50,14 @@ void	rotate_scene(t_scene *scene, t_camera *cam, float angle, char flag)
 		m = get_metrix(angle, 'z');
 	i = -1;
 	while (++i < scene->num_spheres + scene->num_planes + scene->num_cylinder)
-	{
-		scene->obj[i].center = matrix_mul(m, scene->obj[i].center);
-		scene->obj[i].xyz_vec = matrix_mul(m, scene->obj[i].xyz_vec);
-		scene->obj[i].center = vec3_add(scene->obj[i].center,
-				vec3_mult_scalar(scene->obj[i].xyz_vec, DELTA));
-	}
+		rotate_obj(&scene->obj[i], m);
 	scene->light.position = matrix_mul(m, scene->light.position);
 	if (flag == 'x')
-		m = get_metrix((angle), 'x');
+		m = get_metrix(angle, 'x');
 	else if (flag == 'y')
-		m = get_metrix((2 * PI - angle), 'y');
+		m = get_metrix(-1 * angle, 'y');
+	else
+		m = get_metrix(angle, 'z');
 	cam->origin = matrix_mul(m, cam->origin);
 	cam->origin = vec3_add(cam->origin,
 			vec3_mult_scalar(cam->direction, DELTA));

@@ -6,7 +6,7 @@
 #    By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 16:05:09 by yhwang            #+#    #+#              #
-#    Updated: 2023/12/20 14:41:43 by yhwang           ###   ########.fr        #
+#    Updated: 2023/12/20 21:53:01 by yhwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,6 @@ SRCS = $(addsuffix .c, $(FILES))
 OBJS = $(addsuffix .o, $(FILES))
 
 %.o: %.c $(PARSE_INCS_DIR) $(EXECUTE_INCS_DIR)
-# @$(CC) $(CFLAGS) -c $< -o $@ -lm -I$(PARSE_INCS_DIR) -I$(EXECUTE_INCS_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@ -I$(PARSE_INCS_DIR) -I$(EXECUTE_INCS_DIR)
 
 all: $(LIBFT_NAME) $(NAME)

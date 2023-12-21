@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 11:43:51 by acostin           #+#    #+#             */
-/*   Updated: 2023/12/20 16:52:22 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/21 00:55:46 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ t_rgb		create_rgb(double r, double g, double b);
 int			convert_rgb_to_int(t_rgb color);
 
 // SET CAMERA VECTOR
-void	rotate_scene(t_scene *scene, t_camera *cam, float angle, char flag);
+t_matrix3	get_metrix(float angle, char flag);
+void		rotate_scene(t_scene *scene, t_camera *cam, float angle, char flag);
 void		set_cam_vec(t_all *all);
 
 // DRAWING
@@ -96,11 +97,29 @@ void		free_mem(t_all *all);
 void		exit_prog(t_all *all, char *str);
 int			mlx_exit(t_all *all);
 
-//temp
-int	move_x_hook(int keycode, t_all *all);
+
+
+
+
+
+
+
+
+
+void	camera_move(t_all *all);
+void	camera_rotate(t_all *all);
+void	light_move(t_all *all);
+void	obj_move(t_all *all);
+void	obj_rotate(t_all *all);
+
+int	x_y_z_hook(int keycode, t_all *all);
 int	pos_move_hook(int keycode, t_all *all);
 int	vec_rotate_hook(int keycode, t_all *all);
 int	camera_hook(int keycode, t_all *all);
 int	light_hook(int keycode, t_all *all);
+int	obj_hook(int keycode, t_all *all);
+
+
+
 
 #endif
