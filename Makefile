@@ -6,7 +6,7 @@
 #    By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 16:05:09 by yhwang            #+#    #+#              #
-#    Updated: 2023/12/20 21:53:01 by yhwang           ###   ########.fr        #
+#    Updated: 2023/12/21 16:11:45 by yhwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,11 @@ FILES = 	./main \
 			$(EXECUTE_DIR)set_cam_vec \
 			$(EXECUTE_DIR)start_draw \
 			$(EXECUTE_DIR)key_hooks \
+			$(EXECUTE_DIR)cam_light_hooks \
+			$(EXECUTE_DIR)move_rotate_hooks \
+			$(EXECUTE_DIR)cam_light_apply_hooks \
+			$(EXECUTE_DIR)obj_apply_hooks \
+			$(EXECUTE_DIR)obj_hooks \
 			$(EXECUTE_DIR)exit_prog \
 			$(EXECUTE_DIR)init_prog \
 			$(EXECUTE_DIR)init_scene \

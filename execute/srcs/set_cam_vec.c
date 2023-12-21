@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 08:54:39 by yhwang            #+#    #+#             */
-/*   Updated: 2023/12/21 00:55:41 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/21 16:37:35 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ t_matrix3	get_metrix(float angle, char flag)
 void	rotate_obj(t_obj *obj, t_matrix3 m)
 {
 	obj->center = matrix_mul(m, obj->center);
-		obj->xyz_vec = matrix_mul(m, obj->xyz_vec);
-		obj->center = vec3_add(obj->center,
-				vec3_mult_scalar(obj->xyz_vec, DELTA));
+	obj->xyz_vec = matrix_mul(m, obj->xyz_vec);
+	obj->center = vec3_add(obj->center,
+			vec3_mult_scalar(obj->xyz_vec, DELTA));
 }
 
 void	rotate_scene(t_scene *scene, t_camera *cam, float angle, char flag)
