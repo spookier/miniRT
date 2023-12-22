@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:53:38 by yhwang            #+#    #+#             */
-/*   Updated: 2023/12/21 16:36:23 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/22 17:19:08 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	obj_hook(int keycode, t_all *all)
 	printf("KEY_M:\tmove\n");
 	if (all->key_flag_id != SP)
 		printf("KEY_R:\trotate\n");
-	printf("KEY_RIGHT:\tnext object\n");
+	printf("KEY_RIGHT: next object\n");
 	if (keycode == KEY_ESC)
 		exit_prog(all, NULL);
 	else if (keycode == KEY_SPACE)
