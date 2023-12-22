@@ -116,7 +116,7 @@ typedef struct s_scene
 
 }	t_scene;
 
-typedef struct s_all 
+typedef struct s_all
 {
 	t_mlx			g_eng;
 	t_data			img;

@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 12:40:41 by acostin           #+#    #+#             */
-/*   Updated: 2023/12/19 00:46:47 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/22 17:23:52 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	vec3_normalize(t_vec3 *v)
 	float	length;
 
 	length = vec3_length(*v);
-	if (length != 0) 
+	if (length != 0)
 	{
 		v->x /= length;
 		v->y /= length;

@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 00:45:16 by yhwang            #+#    #+#             */
-/*   Updated: 2023/12/21 01:59:51 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/22 17:24:12 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	intersect_ray_sphere(t_ray r, t_obj sphere, float *t1, float *t2)
 	var[1] = 2 * vec3_dot(co, r.direction);
 	var[2] = vec3_dot(co, co) - sphere.radius * sphere.radius;
 	discriminant = (var[1] * var[1]) - (4 * var[0] * var[2]);
-	if (discriminant < 0) 
+	if (discriminant < 0)
 	{
 		*t1 = INFINITY;
 		*t2 = INFINITY;
