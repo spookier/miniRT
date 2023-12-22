@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 12:31:13 by acostin           #+#    #+#             */
-/*   Updated: 2023/12/19 22:29:30 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/22 15:30:06 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	render_scene(t_scene scene, t_all *all)
 
 int	start_draw(t_all *all)
 {
-	printf("Rendering... \n");
+	printf("%sRendering...%s\n", MAGENTA, BLACK);
 	render_scene(all->scene, all);
-	printf("Done.\n");
+	printf("%sDone%s\n", MAGENTA, BLACK);
 	return (0);
 }

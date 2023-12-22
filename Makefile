@@ -6,7 +6,7 @@
 #    By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 16:05:09 by yhwang            #+#    #+#              #
-#    Updated: 2023/12/21 16:11:45 by yhwang           ###   ########.fr        #
+#    Updated: 2023/12/22 15:25:10 by yhwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ YELLOW		:= $(shell tput -Txterm setaf 3)
 
 NAME = miniRT
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
 LIBFT_DIR = ./parse/libft

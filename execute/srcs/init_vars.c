@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 12:15:39 by acostin           #+#    #+#             */
-/*   Updated: 2023/12/20 02:55:41 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/22 15:27:26 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	init_vars_viewport(t_p_scene *p_scene, t_viewport *viewp)
 {
-	viewp->img_width = 900;
-	viewp->img_height = 900;
+	viewp->img_width = IMG_WIDTH;
+	viewp->img_height = IMG_HEIGHT;
 	viewp->fov = p_scene->camera->fov;
 	viewp->viewport_width = 1.0;
 	viewp->viewport_height = 2 * 1 * tan(viewp->fov * PI / 360);

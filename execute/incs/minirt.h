@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 11:43:51 by acostin           #+#    #+#             */
-/*   Updated: 2023/12/21 16:35:14 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/22 15:29:31 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,29 +28,30 @@
 # include "../../parse/libft/incs/libft.h"
 # include "../../parse/incs/miniRT_parse.h"
 
-# define PI	3.14159265359
-# define DELTA	1e-10
+# define PI			3.14159265359
+# define DELTA			1e-10
 
-# define THETA	10
+# define IMG_WIDTH		900
+# define IMG_HEIGHT		900
+# define THETA			10
 
-# define MOVE	1
-# define ROTATE	2
+# define MOVE			1
+# define ROTATE			2
 
-# define CAM	1
-# define LIGHT	2
-# define SP	3
-# define PL	4
-# define CY	5
-
-# define X	1
-# define Y  	2
-# define Z	3
-
-# define PLUS	1
-# define MINUS	2
+# define CAM			1
+# define LIGHT			2
+# define SP			3
+# define PL			4
+# define CY			5
+# define X			1
+# define Y  			2
+# define Z			3
+# define PLUS			1
+# define MINUS			2
 
 # define CYAN			"\x1b[36m"
 # define YELLOW			"\x1b[33m"
+# define MAGENTA		"\033[35m"
 
 // ALLOC MEMORY
 int			alloc_struct_mem(t_all **all);
