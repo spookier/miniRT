@@ -1,9 +1,6 @@
 # miniRT
 
-welcome to the beautiful world of raytracing
-
-
-3d raytracing engine in C 
+# Welcome to the beautiful world of raytracing !
 
 ```
 as i venture into the realm of raytracing, the only way out is rendering it as my new reality...
@@ -13,11 +10,9 @@ here in the rendered... reality is a fragile word, a tightrope that can lead one
 here in the rendered... the dance of light and shadow continues
 ```
 
-Mandatory part without any bonus
-
-Tested on Linux
-
-Success 100/100
+- Mandatory part without any bonus
+- Tested on Linux
+- Success 100/100
 
 ## Installation
 
