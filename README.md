@@ -2,6 +2,7 @@
 
 # Welcome to the beautiful world of raytracing !
 
+
 ```
 as i venture into the realm of raytracing, the only way out is rendering it as my new reality...
 the boundaries between me and my creation blur, blurring the line that i have drawn
@@ -9,6 +10,7 @@ the line that was used to discern the echo of the real from the whisper of the r
 here in the rendered... reality is a fragile word, a tightrope that can lead one into madness...
 here in the rendered... the dance of light and shadow continues
 ```
+### In collaboration with [@sleepychloe](https://github.com/sleepychloe)
 
 - Mandatory part without any bonus
 - Tested on Linux
