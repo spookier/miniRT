@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 16:05:38 by yhwang            #+#    #+#             */
-/*   Updated: 2023/12/21 16:11:51 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/12/27 18:20:16 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,29 @@ void	camera_move(t_all *all)
 
 void	camera_rotate(t_all *all)
 {
+	double	theta;
+
+	theta = THETA * PI / 180;
 	if (all->key_flag_xyz == X)
 	{
 		if (all->key_flag_p_m == MINUS)
-			rotate_scene(&all->scene, &all->cam, -1 * THETA, 'x');
+			rotate_scene(&all->scene, &all->cam, -1 * theta, 'x');
 		else if (all->key_flag_p_m == PLUS)
-			rotate_scene(&all->scene, &all->cam, THETA, 'x');
+			rotate_scene(&all->scene, &all->cam, theta, 'x');
 	}
 	else if (all->key_flag_xyz == Y)
 	{
 		if (all->key_flag_p_m == MINUS)
-			rotate_scene(&all->scene, &all->cam, -1 * THETA, 'y');
+			rotate_scene(&all->scene, &all->cam, -1 * theta, 'y');
 		else if (all->key_flag_p_m == PLUS)
-			rotate_scene(&all->scene, &all->cam, THETA, 'y');
+			rotate_scene(&all->scene, &all->cam, theta, 'y');
 	}
 	else if (all->key_flag_xyz == Z)
 	{
 		if (all->key_flag_p_m == MINUS)
-			rotate_scene(&all->scene, &all->cam, -1 * THETA, 'z');
+			rotate_scene(&all->scene, &all->cam, -1 * theta, 'z');
 		else if (all->key_flag_p_m == PLUS)
-			rotate_scene(&all->scene, &all->cam, THETA, 'z');
+			rotate_scene(&all->scene, &all->cam, theta, 'z');
 	}
 }
 
