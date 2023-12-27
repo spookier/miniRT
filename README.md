@@ -17,7 +17,7 @@ here in the rendered... the dance of light and shadow continues
 ## Installation
 
 ```bash
-  git clone https://github.com/sleepychloe/miniRT.git
+  git clone https://github.com/spookier/miniRT.git
   cd miniRT
   make
   make bonus
